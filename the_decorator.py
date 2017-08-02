@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-from functools import  wraps
+from functools import wraps
+
+
 # def log(func):
 #     @wraps(func)
 #     def wrapper(*args, **kw):
@@ -19,19 +21,22 @@ from functools import  wraps
 #             print('参数必须是整数')
 #     return wrapper
 
-def logs(start='start',end='end'):
+def logs(start='start', end='end'):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kw):
             print('%s call:%s()' % (start, func.__name__))
             func(*args, **kw)
             print('%s call:%s()' % (end, func.__name__))
+
         return wrapper
+
     return decorator
+
 
 @logs()
 def add(a, b):
-    print(a+b)
+    print(a + b)
 
 
 add(1, 434.4)

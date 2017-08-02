@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-import datetime
 import time
-import random
 
 # with open(r'E:\MyProject\deploy\access.log', 'r', encoding='utf-8') as file:
 #     # file.seek(0,2)

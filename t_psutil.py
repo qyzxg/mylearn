@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import psutil
 import time
+
+import psutil
 
 cpu = psutil.cpu_percent(interval=1)
 memory = float(psutil.virtual_memory().used) / float(psutil.virtual_memory().total) * 100.0

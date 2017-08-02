@@ -32,4 +32,4 @@ with open('china_city_geo.json', 'r', encoding='utf-8') as file:
     for k, v in d.items():
         for i, j in dict(v).items():
             l.append(i)
-            print('\'' + i + '\'', ':', [float(j['x']), float(j['y'])],',')
+            print('\'' + i + '\'', ':', [float(j['x']), float(j['y'])], ',')

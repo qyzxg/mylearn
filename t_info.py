@@ -1,9 +1,11 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-from faker import Factory
+import random
+import time
+
 import mysql.connector as mc
-import random, time
+from faker import Factory
 
 fake = Factory.create('zh_CN')
 citys = ['廊坊市', '黄南藏族自治州', '平凉市', '潮州市州', '抚州市', '德阳市', '昌吉回族自治州', '白城市', '鹤岗市', '成都市', '海南藏族自治州', '濮阳市', '宜昌市', '内江市',

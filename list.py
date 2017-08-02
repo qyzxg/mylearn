@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # _*_ coding:utf-8 _*_
-import profile
 
 # t1 = (1, 'de', '3e3')
 # print (t1)

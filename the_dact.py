@@ -12,3 +12,11 @@ s1 = sorted(t, key=lambda s: s[1], reverse=True)
 s2 = sorted(t, key=lambda s: s[0].lower())
 print(s1)
 print(s2)
+
+d = {'OTHERS': 103508, 'RH-': 1936, 'MNSSU': 1784, 'P': 228, 'B': 16670, 'A': 15542, 'O': 40216, 'AB': 11548}
+for k,v in d.items():
+    s = "{name:'%s', value:%d}," % (k,v)
+    print(s)
+
+print(d.keys())
+# print(d.values())

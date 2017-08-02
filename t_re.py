@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import re
+
 l = []
 # p = re.compile(r'^a\w*') #匹配所有以a开头的单词
 # p = re.compile(r'[\u4e00-\u9fa5]+') #匹配所有中文
@@ -14,7 +15,7 @@ p = re.compile(r'^\d{6,10}$')
 with open('re.txt', 'r', encoding='utf-8') as file:
     for s in file.read().replace('，', ',').split():
         print(s)
-        f = re.match(p,s)
+        f = re.match(p, s)
         if f:
             l.append(f.group())
 

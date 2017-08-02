@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import random
 import datetime
+import random
+
 
 # ls = []
 # for i in range(1,10001):
@@ -30,6 +31,7 @@ def coins(n, a, b):
     for (k, v) in c.items():
         d.append(int(v) / n)
     return d
+
 
 print('开始时间:%r' % datetime.datetime.now())
 g = coins(1000000, 1, 6)

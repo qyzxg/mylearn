@@ -2,16 +2,17 @@
 # -*- coding:utf-8 -*-
 
 import random
-import datetime
+
 
 def password():
     L1 = [chr(i) for i in range(48, 57)]
     L2 = [chr(i) for i in range(65, 90)]
     L3 = [chr(i) for i in range(97, 123)]
-    L = L1 + L2 +L3
+    L = L1 + L2 + L3
     pas = random.sample(L, 20)
     pl = ''.join(pas)
     return pl
+
 
 # starttime = datetime.datetime.now()
 # with open(r'E:\MyProject\test\pass.txt','a') as f:

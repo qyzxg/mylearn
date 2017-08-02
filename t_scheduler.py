@@ -1,18 +1,18 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-from flask import Flask, render_template, jsonify, request
-from threading import Timer, Thread
-from time import sleep
+from threading import Timer
 
+from flask import Flask, jsonify
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def api():
     data = {
-      'foo': 'hello',
-      'method': 'world'
+        'foo': 'hello',
+        'method': 'world'
     }
     response = jsonify(data)
     response.status_code = 200
@@ -45,6 +45,7 @@ class Scheduler(object):
 
 def query_db():
     print("IM QUERYING A DB")
+
 
 if __name__ == "__main__":
     scheduler = Scheduler(5, query_db)

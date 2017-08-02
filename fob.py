@@ -81,6 +81,6 @@ d说：c胡说
 # print(list(map(lambda n: pow(n, math.radians(random.random())), [i for i in range(210)])))
 
 
-list = map(str, [i for i in range(1,501)])
+list = map(str, [i for i in range(1, 501)])
 st = ''.join(list).replace('123', '``')
 print(st)

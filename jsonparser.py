@@ -5,7 +5,7 @@
 '''
 Author:Siukwan
 '''
-import sys
+
 
 # reload(sys)
 # sys.setdefaultencoding('utf8')
@@ -247,7 +247,6 @@ def _to_str(pv):
 
 # main函数
 if __name__ == '__main__':
-
     "test"
     '''
     jsonInstance=jsonparser(txt2str())

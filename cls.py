@@ -37,16 +37,17 @@
 #                                          People("abe", 12),
 #                                          People("abc", 17)])]))
 
-import nltk
 import random
-import jieba
 import re
 
-file = open('Walden.txt', 'r',encoding='utf-8')
+import jieba
+import nltk
+
+file = open('Walden.txt', 'r', encoding='utf-8')
 walden = file.read()
 r1 = u'[a-zA-Z0-9’!"#$%&\'()*+,-./:;<=>?@?★、…【】《》？“”‘’！[\\]^_`{|}~]+'
-tem = re.sub(r1,'',walden)
-walden = jieba.lcut(tem,cut_all=False)
+tem = re.sub(r1, '', walden)
+walden = jieba.lcut(tem, cut_all=False)
 print(walden)
 
 
@@ -70,6 +71,7 @@ def generate(cfd, word='我', num=100):
 
         # choose the word randomly from the conditional distribution
         word = arr[int((len(arr)) * random.random())]
+
 
 pairs = makePairs(walden)
 cfd = nltk.ConditionalFreqDist(pairs)

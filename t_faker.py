@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
+import random
+
+import mysql.connector as mc
 from faker import Factory
 from werkzeug.security import generate_password_hash
-import mysql.connector as mc
-import random, string, time
 
 fake = Factory.create('zh_CN')
 
@@ -100,10 +101,10 @@ while True:
     country = fake.country()
     cur = conn.cursor()
     ins = (
-    "INSERT ignore `users` (`id`, `username`, `password`, `email`, `avatar`, `status`, `is_valid`, `confirmed`, `confirmed_on`, `created_at`, `updated_at`, `last_login`, `post_total`, `role`, `wx_img`, `zfb_img`, `wx_num`, `zfb_num`, `city`, `county`, `ip_addr`, `region`, `area`, `country`) VALUES ({}, '{}', '{}', '{}', '{}', {}, {}, {}, '{}', '{}', '{}', '{}', {}, {}, '{}', '{}', '{:.3}', '{:.3}', '{}', '{}', '{}', '{}', '{}', '{}');".format(
-        id, username, password, email, avatar, status, is_valid, confirmed, confirmed_on, created_at, updated_at,
-        last_login,
-        post_total, role, wx_img, zfb_img, wx_num, zfb_num, city, county, ip_addr, region, area, country))
+        "INSERT ignore `users` (`id`, `username`, `password`, `email`, `avatar`, `status`, `is_valid`, `confirmed`, `confirmed_on`, `created_at`, `updated_at`, `last_login`, `post_total`, `role`, `wx_img`, `zfb_img`, `wx_num`, `zfb_num`, `city`, `county`, `ip_addr`, `region`, `area`, `country`) VALUES ({}, '{}', '{}', '{}', '{}', {}, {}, {}, '{}', '{}', '{}', '{}', {}, {}, '{}', '{}', '{:.3}', '{:.3}', '{}', '{}', '{}', '{}', '{}', '{}');".format(
+            id, username, password, email, avatar, status, is_valid, confirmed, confirmed_on, created_at, updated_at,
+            last_login,
+            post_total, role, wx_img, zfb_img, wx_num, zfb_num, city, county, ip_addr, region, area, country))
     cur.execute(ins)
     conn.commit()
     cur.close()
@@ -111,4 +112,4 @@ while True:
     print(m, 'ok')
     if n == 300:
         break
-    # time.sleep(1)
+        # time.sleep(1)
