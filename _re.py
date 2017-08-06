@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 import re
 
-reg = r'<img alt.*?src="(.*?)".*?/>'
+reg = r'<img alt.*? src="(.*?)".*?/>'
 p = re.compile(reg)
 
 s = '''
@@ -27,4 +27,4 @@ user_collect_food(&nbsp;联合主键（user_id,food_id）,collect_time)，在此
 <p><img alt="" src="https://static.oschina.net/uploads/code/201407/25191443_eP0s.png" /></p>
 '''
 
-print(p.findall(s))
+print(p.search(s).group(1))
