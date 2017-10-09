@@ -1,31 +1,29 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-
-# 快排
-def qsort(lst):
-    if len(lst) == 0:
-        return []
-    else:
-        seq = lst[0]
-        lesser = qsort([i for i in lst[1:] if i < seq])
-        greater = qsort([i for i in lst[1:] if i > seq])
-        return lesser + [seq] + greater
+import random
+import math
+import time
+import unittest
+import inspect
+from functools import wraps, reduce
 
 
 # 二分法查找
-def bsearch(array, key):
-    low = 0
-    high = len(array) - 1
+def bsearch(lst, target):
+    if not all([lst, isinstance(target, (int, float))]):
+        return '数组为空或target不为数字'
+    lst.sort()
+    low, high = 0, len(lst) - 1
     while low <= high:
-        mid = low + int((high - low) / 2)
-        if key < array[mid]:
+        mid = (low + high) // 2
+        if lst[mid] > target:
             high = mid - 1
-        elif key > array[mid]:
+        elif lst[mid] < target:
             low = mid + 1
         else:
-            return mid
-    return -1
+            return '{}在数组中的索引位置是{}'.format(target, mid)
+    return '{}没找到'.format(target)
 
 
 class MyStack():
@@ -121,18 +119,15 @@ def palcheker(my_str):
     return flag
 
 
-def isPrime(n):
-    # 判断是否是素数
-    flag = True
+def is_prime(n):
+    if not type(n) == int:
+        raise ValueError
     if n <= 1:
-        flag = False
-    i = 2
-    while i * i <= n:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
         if n % i == 0:
-            flag = False
-            break
-        i += 1
-    return flag
+            return False
+    return True
 
 
 # def change(coins, num):
@@ -166,19 +161,172 @@ def coin_change(coins, money):
     print('面值为：{0} 的最小硬币数目为：{1} '.format(cents, coin_count[cents]))
 
 
-def bubble_sort(l, desc=True):
-    # 冒泡排序,接收一个list,默认降序排列
-    lenth = len(l)
-    if lenth <= 1:
-        return l
-    for i in range(lenth):
-        for j in range(1, lenth - i):
-            if l[j - 1] < l[j]:
-                l[j - 1], l[j] = l[j], l[j - 1]
-    if desc:
-        return l
+# 排序算法
+# 0x01 冒泡排序
+def bubble_sort(lst):
+    if len(lst) <= 1:
+        return lst
     else:
-        return l[::-1]
+        for i in range(len(lst)):
+            for j in range(i + 1, len(lst)):
+                if lst[i] > lst[j]:
+                    lst[i], lst[j] = lst[j], lst[i]
+    return lst
+
+
+# 0x02 快速排序 去重
+def quick_sort(lst):
+    if len(lst) <= 1:
+        return lst
+    temp = random.choice(lst)
+    lesser = quick_sort([i for i in lst if i < temp])
+    greater = quick_sort([i for i in lst if i > temp])
+    return lesser + [temp] + greater
+
+
+# 0x03 快速排序 不去重
+def quick_sort1(lst):
+    if len(lst) <= 1:
+        return lst
+    temp = random.choice(lst)
+    lesser = [i for i in lst if i < temp]
+    medium = [i for i in lst if i == temp]
+    greater = [i for i in lst if i > temp]
+    return quick_sort(lesser) + medium + quick_sort(greater)
+
+
+# 0x04 插入排序
+def insert_sort(lst):
+    if len(lst) <= 1:
+        return lst
+    for i in range(1, len(lst)):
+        k = lst[i]
+        j = i - 1
+        while j >= 0:
+            if lst[j] > k:
+                lst[j + 1] = lst[j]
+                lst[j] = k
+            j -= 1
+    return lst
+
+
+def fib(n):
+    a, b = 0, 1
+    while n > 0:
+        yield a
+        a, b = b, a + b
+        n -= 1
+
+
+def fib1(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib1(n - 2) + fib1(n - 1)
+
+
+#
+# def is_prime(n):
+#     if n <= 1:
+#         return False
+#     for i in range(2, int(math.sqrt(n)) + 1):
+#         if n % i == 0:
+#             return False
+#     return True
+
+
+def get_current_func_name():
+    return inspect.stack()[1][3]
+
+
+# class TestBsearch(unittest.TestCase):
+#     # def setUp(self):
+#     #     print('Start test...')
+#     #
+#     # def tearDown(self):
+#     #     print('Finish test...')
+#
+#     def test_error(self):
+#         print('Start test {}...'.format(get_current_func_name()))
+#         self.assertEqual(bsearch([], 4), '数组为空或target不为数字')
+#         self.assertEqual(bsearch([], 4.5), '数组为空或target不为数字')
+#         self.assertEqual(bsearch([1, 3, 4], 'a'), '数组为空或target不为数字')
+#         self.assertEqual(bsearch([2.1, 7.8], '2.1'), '数组为空或target不为数字')
+#
+#     def test_found(self):
+#         print('Start test {}...'.format(get_current_func_name()))
+#         self.assertEqual(bsearch([1, 3, 4], 3), '3在数组中的索引位置是1')
+#         self.assertEqual(bsearch([2.1, 7.8], 2.1), '2.1在数组中的索引位置是0')
+#
+#     def test_not_found(self):
+#         print('Start test {}...'.format(get_current_func_name()))
+#         self.assertEqual(bsearch([2.1, 7.8], 2.3), '2.3没找到')
+
+
+def hello():
+    print('正在调用函数{}'.format(inspect.stack()[0][3]))
+
+
+def singleton(cls):
+    '''装饰器实现单例模式'''
+    instance = {}
+
+    @wraps(cls)
+    def get_instance(*args, **kwargs):
+        if cls not in instance:
+            instance[cls] = cls(*args, **kwargs)
+        return instance[cls]
+
+    return get_instance
+
+
+@singleton
+class MyClass(object):
+    pass
+
+
+class SingleTon(object):
+    '''使用元类实现单例模式'''
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(SingleTon, cls).__new__(cls, *args, **kwargs)
+            return cls._instance
+
+
+class MyClass1(object):
+    __metaclass__ = SingleTon
+
+
+def args_check():
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*arg, **kwargs):
+            pass
+
+
+def timeit(process_time=False):
+    t = time.clock if process_time else time.time
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            start = t()
+            f = func(*args, **kwargs)
+            print(t() - start)
+            return f
+
+        return wrapper
+
+    return decorator
+
+
+@timeit(True)
+def check():
+    time.sleep(2)
+
 
 
 if __name__ == '__main__':
@@ -199,4 +347,15 @@ if __name__ == '__main__':
     # print(palcheker('er45re'))
     # print(list(filter(isPrime, range(1001))))
     # coin_change([1, 5, 10, 20], 55)
-    print(bubble_sort([1], desc=False))
+    # print(bubble_sort([1], desc=False))
+
+    # print(list(filter(is_prime, range(100))))
+    # print(fn(, map(fib1, range(30))))
+    # from operator import add, mul
+    #
+    # print(sum(map(fib1, range(300))))
+    # print(reduce(mul, range(1, 31)))
+    # print(list(filter(lambda x: x % 2 == 0, range(30))))
+    # print(list(filter(is_prime, range(300000000)))[-10:])
+    # print(is_prime(355678565343567676444535635354656565653434545656553134343331))
+    check()

@@ -26,5 +26,72 @@ user_collect_food(&nbsp;联合主键（user_id,food_id）,collect_time)，在此
 
 <p><img alt="" src="https://static.oschina.net/uploads/code/201407/25191443_eP0s.png" /></p>
 '''
+import random
 
-print(p.search(s).group(1))
+
+#
+#
+# # print(p.search(s).group(1))
+# class MyIter(object):
+#     '''生成器类,返回n个随机整型'''
+#
+#     def __init__(self, n):
+#         self.n = n
+#         self.i = 0
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         self.i += 1
+#         if self.i > self.n:
+#             raise StopIteration
+#         return random.randint(0, self.n)
+#
+#
+# class MyOpen:
+#     def __init__(self, filename, mode, encoding):
+#         self.filename = filename
+#         self.mode = mode
+#         self.encoding = encoding
+#         self.file = open(self.filename, mode=self.mode, encoding=self.encoding)
+#         self.file.readline()
+#
+#     def read(self):
+#         return self.file.read()
+#
+#     def write(self, content):
+#         self.file.write(content + '\n')
+#
+#     def __enter__(self):
+#         return self
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         self.file.close()
+#
+#     def __str__(self):
+#         return self.filename
+#
+#     def __call__(self, *args, **kwargs):
+#         return self.read()
+#
+# f = MyOpen('access.log', 'r', 'utf-8')
+# print(f())
+
+class MyIter:
+    def __init__(self, n):
+        self.n = n
+        self.i = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.i += 1
+        if self.i > self.n:
+            raise StopIteration
+        return random.randint(1, self.n)
+
+
+for i in MyIter(10):
+    print(i)

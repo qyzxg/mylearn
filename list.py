@@ -37,6 +37,5 @@
 # alist = [{'name':'a','age':20},{'name':'b','age':30},{'name':'c','age':25}]
 # alist.sort(key = lambda x: -x["age"])
 # print (alist)
-r = (85 - 72) / 72
-hello = 'hello'
-print('小明的成绩提高了{:.2%}'.format(r))
+import platform
+print(platform.system())

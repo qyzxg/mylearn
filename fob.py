@@ -1,3 +1,5 @@
+import datetime
+
 # x = 8
 # j = 0.000000001
 # guess = 0
@@ -81,6 +83,13 @@ d说：c胡说
 # print(list(map(lambda n: pow(n, math.radians(random.random())), [i for i in range(210)])))
 
 
-list = map(str, [i for i in range(1, 501)])
-st = ''.join(list).replace('123', '``')
-print(st)
+# list = map(str, [i for i in range(1, 501)])
+# st = ''.join(list).replace('123', '``')
+# print(st)
+# print(datetime.datetime.now().strftime('%Y-%m-%d'))
+
+import json, os
+
+d = json.load(open('select.json', 'r', encoding='utf-8'))
+print(d['industry'])
+print(os.path.dirname(__file__))

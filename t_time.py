@@ -21,4 +21,4 @@ def time_tans(s):
     now = datetime.datetime.now()
     return int((now-ds).days)
 
-print(time_tans(1498442639))
+print('http://xiaorui.cc/2017/09/15/python-requests-response%E5%80%BC%E5%88%A4%E6%96%AD/'.split('/'))
